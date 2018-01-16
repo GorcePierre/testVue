@@ -30,31 +30,58 @@
     <div class="separator">
     </div>
     <div class="right">
-      <!-- ton code ici -->
-    </div>
+      <input v-model="message" placeholder="saissir une tache">
+      <p>Message is: {{ message }}</p>
+     <button v-on:click="addTask(message)">Add</button>
+      <ol >
+        <div v-for="(todo , index) of todos" :key="todo.label">
+        <li> {{todo.label}} </li>
+       <button class="btn btn-warning" v-on:click="deleteTask(index)">x</button>
+        </div>
+      </ol> 
   </div>
+    </div>
   </div>
 </template>
 <script>
+const todo = [
+  {
+    label: "ma première chose à faire"
+  },
+  {
+    label: "ma deuxième chose à faire"
+  }
+];
+let newTodo = this.todos;
+let message = "";
+let newTask = {
+  label: ""
+};
 
-const todo = [{
-  label: 'ma première chose à faire'
-}, {
-  label: 'ma deuxième chose à faire'
-}]
-
-console.log(todo)
+console.log(todo);
 
 export default {
-  data () {
+  data() {
     return {
-
-    }
+      todos: todo,
+      message: "",
+    };
   },
   methods: {
-
+    addTask(text) {
+      newTask.label = text;
+      console.log(newTask.label);
+      this.message = "";
+      newTodo = this.todos.push(newTask.label);
+      console.log("todos: " + this.newTodo)
+      return newTodo;
+    },
+    deleteTask(index) {
+      console.log(index)
+      this.todos.splice(index,1)
+    }
   }
-}
+};
 </script>
 <style>
 
