@@ -30,24 +30,40 @@
     <div class="separator">
     </div>
     <div class="right">
-      Liste des composants : <span @click="changeTheDisplayedComponent('composant1')">composants1</span>, <span @click="changeTheDisplayedComponent('composant2')">composant2</span>, <span @click="changeTheDisplayedComponent('composant3')">composant3</span>
-      <!-- ton code ici -->
+      Liste des composants : <span @click="changeTheDisplayedComponent('component1')">composants1</span>, <span @click="changeTheDisplayedComponent('component2')">composant2</span>, <span @click="changeTheDisplayedComponent('component3')">composant3</span>
+        <component :is="dynamicComponent"></component>
     </div>
   </div>
   </div>
 </template>
 <script>
+
+  import Component1 from './_subs/Component1.vue';
+  import Component2 from './_subs/Component2.vue';
+  import Component3 from './_subs/Component3.vue';
+
+
 export default {
   data () {
     return {
-    }
+      dynamicComponent: "",  
+       }
   },
   methods: {
+      changeTheDisplayedComponent(componentTag) {
+        
+        this.dynamicComponent = componentTag;
+        console.log(this.dynamiComponent)
+      }
 
   },
-  components: {
+  components: { 
+    Component1,
+    Component2,
+    Component3
   }
 }
+
 </script>
 <style>
  .right span {
