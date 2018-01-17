@@ -34,6 +34,7 @@
         <component :is="dynamicComponent"></component>
     </div>
   </div>
+    <app-my-sweet-component></app-my-sweet-component>
   </div>
 </template>
 <script>
@@ -53,7 +54,6 @@ export default {
       changeTheDisplayedComponent(componentTag) {
         
         this.dynamicComponent = componentTag;
-        console.log(this.dynamiComponent)
       }
 
   },

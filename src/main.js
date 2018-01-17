@@ -10,10 +10,12 @@ import Exercice2 from '@/components/_layout/Exercices/Exercice2'
 import Exercice3 from '@/components/_layout/Exercices/Exercice3'
 import Exercice4 from '@/components/_layout/Exercices/Exercice4'
 import Exercice5 from '@/components/_layout/Exercices/Exercice5'
+import MySweetComponent from '@/components/_layout/Exercices/Exercice3/_commons/MySweetComponent.vue'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.component('app-my-sweet-component', MySweetComponent)
 
 const routes = [
   {

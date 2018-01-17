@@ -35,12 +35,13 @@
       <input v-model="newTask" placeholder="saissir une tache">
         <button v-on:click="addTask()">Add</button>
           <ol >
-            <div v-for="(todo , index) of todos" :key="todo.label">
+            <div v-for="(todo , index) of todos">
             <li> {{todo.label}} 
           <button class="btn btn-warning" v-on:click="deleteTask(index)">x</button></li>
         </div>
       </ol> 
       </div>
+    <app-my-sweet-component></app-my-sweet-component>
   </div>
     </div>
   </div>
@@ -66,18 +67,19 @@ export default {
     };
   },
   methods: {
-    addTask(newTask) {
-      if (newTask.label){
-      this.todos.push({
-        label: this.newTask
-      });
-      this.newTask = "";
-      }else  this.todos
+    addTask() {
+      if (this.newTask) {
+        this.todos.push({
+          label: this.newTask
+        });
+        this.newTask = "";
+      } else this.todos;
     },
     deleteTask(index) {
       this.todos.splice(index, 1);
     }
-  }
+  },
+  components: {}
 };
 </script>
 <style>

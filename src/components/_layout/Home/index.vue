@@ -22,6 +22,7 @@
     <div class="next" @click="$router.push({name: 'exercice1'})">
       Commencer l'exercice
     </div>
+    <app-my-sweet-component></app-my-sweet-component>
   </div>
 </template>
 

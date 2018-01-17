@@ -31,7 +31,7 @@
     <div class="separator">
     </div>
     <div class="right">
-      <!-- ton code ici -->
+    <app-my-sweet-component></app-my-sweet-component>
     </div>
   </div>
   </div>
@@ -40,11 +40,6 @@
 export default {
   data () {
     return {
-      donnee: {
-        title: 'Mon super composant',
-        content: 'je suis utilisable où tu veux',
-        question: 'Classe ou pas classe ?'
-      }
     }
   },
   methods: {
