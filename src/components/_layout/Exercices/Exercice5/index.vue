@@ -46,23 +46,20 @@ export default {
   data() {
     return {
       number: 0,
-      phrase: "Lkroiozgzout, za gy xéayyo zut ingrrktmk",
+      phrase: "Lkroiozgzout, za gy xéayyo zut ingrrktmk"
     };
   },
   methods: {
     cesar(number, text) {
       let i = 0;
-
-      this.number= Number(number) ;
-      //realNumber =  Number(this.number),
+      this.number = Number(number);
       let decryptedSentence = "";
       while (i < text.length) {
-        let numberChar = text[i].charCodeAt();
+        let numberChar = text.charCodeAt(i);
         if (this.isLetter(numberChar)) {
           numberChar += this.number;
           if (this.isAfterZ(numberChar)) {
             numberChar -= 26;
-            console.log(this.realNumber);
           }
           if (this.isBeforeA(numberChar)) {
             numberChar += 26;
