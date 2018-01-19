@@ -35,7 +35,7 @@
       <input v-model="newTask" placeholder="saissir une tache">
         <button v-on:click="addTask()">Add</button>
           <ol >
-            <div v-for="(todo , index) of todos">
+            <div v-for="(todo , index) of todos" v-bind:key="todo.label">
             <li> {{todo.label}} 
           <button class="btn btn-warning" v-on:click="deleteTask(index)">x</button></li>
         </div>

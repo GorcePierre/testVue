@@ -48,7 +48,9 @@ const store = new Vuex.Store({
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App },
+  components: { 
+    App
+   },
   router,
   store
 })
