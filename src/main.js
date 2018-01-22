@@ -2,7 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
+import Vuex, { Store } from 'vuex'
 import App from './App'
 import Home from '@/components/_layout/Home'
 import Exercice1 from '@/components/_layout/Exercices/Exercice1'
@@ -37,20 +37,46 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
   state: {
-    // ton state
+    newTask: "",
+    todo: [
+      {
+        label: "ma première chose à faire"
+      },
+      {
+        label: "ma deuxième chose à faire"
+      }
+    ]
   },
   mutations: {
-  // ton setter
-  }
+
+    addTask: (state, newTask) => {
+      console.log("console: " +  newTask)
+
+      if (newTask) {
+        console.log(newTask)
+        state.todo.push({
+          label: newTask
+        });
+        console.log("console 1 : " +  newTask)
+      }
+      else state.todo 
+      state.newTask = "coucou";
+      console.log(state.newTask)
+
+    },
+    deleteTask: (state, index) => {
+      state.todo.splice(index, 1);
+    }
+  },
 })
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { 
+  components: {
     App
-   },
+  },
   router,
   store
 })

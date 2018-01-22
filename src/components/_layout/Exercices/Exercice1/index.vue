@@ -41,7 +41,6 @@
         </div>
       </ol> 
       </div>
-    <app-my-sweet-component></app-my-sweet-component>
   </div>
     </div>
   </div>

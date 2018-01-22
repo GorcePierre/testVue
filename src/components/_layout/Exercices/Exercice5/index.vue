@@ -35,8 +35,14 @@
     </div>
     <div class="right">
       <p class="texte">Le code : {{phrase}}</p>
-      <input type="number" name="" value="" v-model="number">
+      <input type="number" name="number" value="number" v-model="number">
       <p class="texte">Résultat: {{cesar(number, phrase)}}</p>
+    </div>
+    <div class="right">
+      <h5>un messsage à crypter </h5>
+      <input class="texte" placeholder="message à coder" type="texte" name="" v-model="hideSentence"> 
+      <input type="number" name="keyNumber" value="keyNumber" id ="keyNumber" v-model="keyNumber" debounce="250">
+      <p class="texte">Résultat: {{encryptCesar(keyNumber, hideSentence)}}</p>
     </div>
   </div>
   </div>
@@ -46,7 +52,9 @@ export default {
   data() {
     return {
       number: 0,
-      phrase: "Lkroiozgzout, za gy xéayyo zut ingrrktmk"
+      phrase: "Lkroiozgzout, za gy xéayyo zut ingrrktmk",
+      keyNumber: 0,
+      hideSentence: ""
     };
   },
   methods: {
@@ -58,10 +66,10 @@ export default {
         let numberChar = text.charCodeAt(i);
         if (this.isLetter(numberChar)) {
           numberChar += this.number;
-          if (this.isAfterZ(numberChar)) {
+          if (this.isAfterZ(numberChar, this.number)) {
             numberChar -= 26;
           }
-          if (this.isBeforeA(numberChar)) {
+          if (this.isBeforeA(numberChar, this.number)) {
             numberChar += 26;
           }
         }
@@ -93,21 +101,49 @@ export default {
       );
     },
 
-    isAfterZ(numberChar) {
+    isAfterZ(numberChar, number) {
       let zCode = "z".charCodeAt(0);
       let zUpper = "Z".charCodeAt(0);
       return (
-        (zUpper < numberChar && numberChar <= zUpper + this.number) ||
-        (zCode < numberChar && numberChar <= zCode + this.number)
+        (zUpper < numberChar && numberChar <= (zUpper + number)) ||
+        (zCode < numberChar && numberChar <= (zCode + number))
       );
     },
-    isBeforeA(numberChar) {
+    isBeforeA(numberChar, number) {
       let aCode = "a".charCodeAt(0);
       let aUpper = "A".charCodeAt(0);
       return (
-        (aUpper > numberChar && numberChar >= aUpper + this.number) ||
-        (aCode > numberChar && numberChar >= aCode + this.number)
+        (aUpper > numberChar && numberChar > (aUpper + number)) ||
+        (aCode > numberChar && numberChar >= (aCode + number))  
       );
+    },
+    //encrypt in Ceasar's code
+
+    encryptCesar(keyNumber, text) {
+      let i = 0;  
+      this.keyNumber = Number(keyNumber);
+      let isEncryptSentence = "";
+      while (i < text.length) {
+        let isEncryptLetter = "";
+        let isCodeNumber = text.charCodeAt([i]);
+        if (this.isLetter(isCodeNumber)) {
+          console.log(this.keyNumber)
+          if (this.isAfterZ(isCodeNumber,(this.keyNumber))) {
+          console.log(this.isAfterZ(isCodeNumber, (this.keyNumber)));
+            console.log("n2: " + (this.keyNumber));
+            isCodeNumber -= 26;
+          }
+          if (this.isBeforeA(isCodeNumber,(this.keyNumber))) {
+            console.log("n3: " + isCodeNumber);
+            isCodeNumber += 26;
+          }
+          isCodeNumber -= this.keyNumber;
+          isEncryptLetter = String.fromCharCode(isCodeNumber);
+        } else isEncryptLetter = text[i];
+        isEncryptSentence += isEncryptLetter;
+        i++;
+      }
+      return isEncryptSentence;
     },
 
     components: {}

@@ -29,32 +29,41 @@
         <li>Getter</li>
         <li>Configuration</li>
       </ul>
-    </div>
+    </div>  
     <div class="separator">
     </div>
     <div class="right">
-      <!-- ton code ici -->
+      <div>
+      <h2>MA TODOLIST </h2>
+      <input v-model="newTask" placeholder="saissir une tache">
+        <button v-on:click="addTask(newTask)">Add</button>
+          <ol >
+            <div v-for="(todo , index) of todos" v-bind:key="todo.label">
+            <li> {{todo.label}} 
+          <button class="btn btn-warning" v-on:click="deleteTask(index)">x</button></li>
+        </div>
+      </ol> 
+      </div>  
     </div>
   </div>
   </div>
 </template>
 <script>
+import { mapMutations, Store } from "vuex";
+
 export default {
-  data () {
+  data() {
     return {
-      donnée: {
-        title: 'Mon super composant',
-        content: 'je suis utilisable où tu veux',
-        question: 'Classe ou pas classe ?'
-      }
-    }
+      newTask: this.$store.state.newTask,
+      todos: this.$store.state.todo,
+    };
   },
   methods: {
-
+    ...mapMutations(["addTask", "deleteTask"])
   },
-  components: {
-  }
-}
+  components: {}
+};
 </script>
 <style>
+
 </style>
